@@ -1,23 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TranslateComponent } from './translate/translate.component';
-import { TranslateService } from './translate.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateListComponent } from './components/translate/translate-list/translate-list.component';
+import { TranslateFormComponent } from './components/translate/translate-form/translate-form.component';
+import { HomeComponent } from './components/home/home.component';
+import { SharedComponent } from './components/shared/shared.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TranslateComponent
+    TranslateListComponent,
+    TranslateFormComponent,
+    HomeComponent,
+    SharedComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     FormsModule,
-    HttpClientModule
+    ToastrModule.forRoot()
   ],
-  providers: [TranslateService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

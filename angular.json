@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "T08-ApiTranslate": {
+    "sc-translation": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/t08-api-translate",
+            "outputPath": "dist/sc-translation",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -60,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "T08-ApiTranslate:build:production"
+              "browserTarget": "sc-translation:build:production"
             },
             "development": {
-              "browserTarget": "T08-ApiTranslate:build:development"
+              "browserTarget": "sc-translation:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "T08-ApiTranslate:build"
+            "browserTarget": "sc-translation:build"
           }
         },
         "test": {
@@ -87,7 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -97,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "76b1bf88-43aa-47ec-b116-43c0a9137c5d"
+    "analytics": "1d69dbe2-43be-4bb1-a1cb-8906d90250f9"
   }
 }

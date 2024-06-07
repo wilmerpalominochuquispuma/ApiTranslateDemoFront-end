@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-10"> <!-- Increased column width -->
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h2 class="card-title mb-0">Registrar Estudiante</h2>
+                    <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                        (click)="closeTranslationForm()"></button>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="onSubmit()" #translationForm="ngForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fromLanguage" class="form-label">Del Idioma:</label>
+                                <select class="form-select" id="fromLanguage" name="fromLanguage"
+                                    [(ngModel)]="translation.fromLanguage" required>
+                                    <option value="" disabled selected>Seleccione un idioma</option>
+                                    <option *ngFor="let language of languages" [value]="language.code">{{ language.name
+                                        }}</option>
+                                </select>
+                                <div *ngIf="hasError('fromLanguage')" class="text-danger">{{ getError('fromLanguage') }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="toLanguage" class="form-label">Al Idioma:</label>
+                                <select class="form-select" id="toLanguage" name="toLanguage"
+                                    [(ngModel)]="translation.toLanguage" required>
+                                    <option value="" disabled selected>Seleccione un idioma</option>
+                                    <option *ngFor="let language of languages" [value]="language.code">{{ language.name
+                                        }}</option>
+                                </select>
+                                <div *ngIf="hasError('toLanguage')" class="text-danger">{{ getError('toLanguage') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="originalText" class="form-label">Texto Original:</label>
+                                <textarea class="form-control" id="originalText" name="originalText"
+                                    [(ngModel)]="translation.originalText" required></textarea>
+                                <div *ngIf="hasError('originalText')" class="text-danger">{{ getError('originalText') }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="translatedText" class="form-label">Texto Traducido:</label>
+                                <textarea class="form-control" id="translatedText" name="translatedText"
+                                    [(ngModel)]="translation.translatedText" required></textarea>
+                                <div *ngIf="hasError('translatedText')" class="text-danger">{{
+                                    getError('translatedText') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 d-grid">
+                                <button type="submit" class="btn btn-primary col-auto">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

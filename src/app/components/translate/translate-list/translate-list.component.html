@@ -1,0 +1,60 @@
+<div class="container">
+    <h1 class="mx-4">Traducciones</h1>
+    <div class="d-flex justify-content-end mb-3">
+        <div class="col-md-4  mx-4">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="searchTerm"
+                (input)="onSearchInput()">
+        </div>
+        <button class="btn btn-primary" (click)="openTranslationForm()">Traducir</button>
+    </div>
+
+
+
+
+    <app-translate-form *ngIf="showTranslationForm" (closeForm)="closeTranslationForm()"></app-translate-form>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th [ngStyle]="{'width': '150px'}">Texto Original</th>
+                    <th [ngStyle]="{'width': '150px'}">Texto Traducido</th>
+                    <th [ngStyle]="{'width': '70px'}">Del Idioma</th>
+                    <th [ngStyle]="{'width': '70px'}">Al Idioma</th>
+                    <th [ngStyle]="{'width': '50px'}">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let translation of translationsFiltered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)"
+                    [ngStyle]="{'height': '60px'}">
+                    <td>{{ translation.originalText }}</td>
+                    <td>{{ translation.translatedText }}</td>
+                    <td>{{ translation.fromLanguage }}</td>
+                    <td>{{ translation.toLanguage }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-danger btn-sm"
+                                (click)="deleteTranslation(translation)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                            <button (click)="openEditForm(translation)" type="button" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination-container">
+            <a href="javascript:void(0);" class="pagination-button btn btn-primary" (click)="previousPage()"
+                id="previousPage"><i class="bi bi-caret-left-fill"></i></a>
+            &nbsp;
+            <span id="currentPage" class="pagination-button current">{{ currentPage }}</span>
+            &nbsp;
+            <a href="javascript:void(0);" class="pagination-button btn btn-primary" (click)="nextPage()"
+                id="nextPage"><i class="bi bi-caret-right-fill"></i></a>
+            &nbsp;
+        </div>
+    </div>
+</div>
