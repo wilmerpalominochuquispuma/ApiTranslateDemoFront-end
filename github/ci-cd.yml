@@ -3,7 +3,9 @@ on:
   push:
     branches:
       - develop
-  jobs:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
@@ -12,7 +14,7 @@ on:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
-       uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -22,7 +24,7 @@ on:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
   
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/sonarcloud_t08_fe:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/ms_sonarcloud_t08_fe:latest .
         
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/sonarcloud_t08_fe:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/ms_sonarcloud_t08_fe:latest
